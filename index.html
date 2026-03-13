@@ -1,121 +1,381 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>100 РАДИО</title>
-    <style>
-        body { margin: 0; font-family: Arial, sans-serif; background-color: #ebedf0; padding-bottom: 150px; }
-        .header { background-color: #ee8208; color: white; padding: 15px; text-align: center; font-size: 24px; font-weight: bold; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; padding: 20px; max-width: 1200px; margin: 0 auto; }
-        .card { background: white; border-radius: 8px; padding: 10px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.2); cursor: pointer; border: 2px solid transparent; }
-        .card.active { border-color: #ee8208; background: #fffaf5; }
-        .logo-wrap { width: 100%; aspect-ratio: 1/1; background: #eee; border-radius: 4px; margin-bottom: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        .logo-img { width: 100%; height: 100%; object-fit: contain; }
-        .name { font-weight: bold; font-size: 13px; color: #333; display: block; height: 32px; overflow: hidden; }
-        .player-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #fff; border-top: 4px solid #ee8208; padding: 15px 10px; box-shadow: 0 -3px 10px rgba(0,0,0,0.2); z-index: 1000; }
-        .now-playing { text-align: center; font-weight: bold; margin-bottom: 10px; color: #ee8208; font-size: 14px; }
-        .controls { display: flex; align-items: center; justify-content: center; gap: 10px; max-width: 800px; margin: 0 auto; }
-        .btn { background: #ee8208; color: white; border: none; padding: 12px 20px; border-radius: 6px; font-weight: bold; cursor: pointer; }
-        .btn-nav { background: #555; }
-        .vol-slider { flex-grow: 1; height: 40px; accent-color: #ee8208; cursor: pointer; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>100 РАДИО</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:#ebedf0;
+padding-bottom:170px;
+}
+
+.header{
+background:#ee8208;
+color:white;
+padding:15px;
+text-align:center;
+font-size:24px;
+font-weight:bold;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+gap:15px;
+padding:20px;
+max-width:1200px;
+margin:auto;
+}
+
+.card{
+background:white;
+border-radius:8px;
+padding:10px;
+text-align:center;
+box-shadow:0 1px 3px rgba(0,0,0,0.2);
+cursor:pointer;
+border:2px solid transparent;
+}
+
+.card.active{
+border-color:#ee8208;
+background:#fffaf5;
+}
+
+.logo-wrap{
+width:100%;
+aspect-ratio:1/1;
+background:#eee;
+border-radius:4px;
+margin-bottom:8px;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+}
+
+.logo-img{
+width:100%;
+height:100%;
+object-fit:contain;
+}
+
+.name{
+font-weight:bold;
+font-size:13px;
+color:#333;
+display:block;
+height:32px;
+overflow:hidden;
+}
+
+.player-bar{
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+background:white;
+border-top:4px solid #ee8208;
+padding:12px;
+box-shadow:0 -3px 10px rgba(0,0,0,0.2);
+z-index:1000;
+}
+
+.now-playing{
+text-align:center;
+font-weight:bold;
+margin-bottom:6px;
+color:#ee8208;
+font-size:14px;
+}
+
+.controls{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:12px;
+max-width:800px;
+margin:auto;
+}
+
+.btn{
+border:none;
+cursor:pointer;
+font-weight:bold;
+}
+
+.nav-btn{
+background:#555;
+color:white;
+padding:12px 14px;
+border-radius:6px;
+font-size:16px;
+}
+
+.play-btn{
+background:#ee8208;
+color:white;
+font-size:16px;
+padding:14px 28px;
+border-radius:10px;
+}
+
+.play-btn.stop{
+background:#d32f2f;
+}
+
+.vol{
+width:100%;
+max-width:500px;
+margin:8px auto 0;
+display:block;
+}
+
+.vol input{
+width:100%;
+height:10px;
+appearance:none;
+border-radius:10px;
+background:linear-gradient(to right,#ee8208 50%,#ddd 50%);
+outline:none;
+transition:background 0.2s;
+}
+
+.vol input::-webkit-slider-thumb{
+appearance:none;
+width:22px;
+height:22px;
+border-radius:50%;
+background:#ee8208;
+cursor:pointer;
+box-shadow:0 0 6px rgba(0,0,0,0.4);
+}
+
+.equalizer{
+display:flex;
+justify-content:center;
+gap:3px;
+height:14px;
+margin-top:4px;
+}
+
+.bar{
+width:3px;
+background:#ee8208;
+height:4px;
+animation: eq 0.8s infinite ease-in-out;
+}
+
+.bar:nth-child(2){animation-delay:.1s}
+.bar:nth-child(3){animation-delay:.2s}
+.bar:nth-child(4){animation-delay:.3s}
+.bar:nth-child(5){animation-delay:.4s}
+
+@keyframes eq{
+0%{height:4px}
+50%{height:14px}
+100%{height:4px}
+}
+
+.eq-off .bar{
+animation:none;
+height:4px;
+}
+
+</style>
 </head>
+
 <body>
 
 <div class="header">100 РАДИО</div>
+
 <div id="radio-grid" class="grid"></div>
 
 <div class="player-bar">
-    <div class="now-playing" id="track-status">ВЫБЕРИТЕ СТАНЦИЮ</div>
-    <div class="controls">
-        <button class="btn btn-nav" onclick="next(-1)">◀</button>
-        <button id="play-btn" class="btn" onclick="toggle()">ПУСК</button>
-        <button class="btn btn-nav" onclick="next(1)">▶</button>
-        <input type="range" id="volume" class="vol-slider" min="0" max="1" step="0.01" value="0.5">
-    </div>
+
+<div class="now-playing" id="track-status">
+ВЫБЕРИТЕ СТАНЦИЮ
+</div>
+
+<div class="equalizer eq-off" id="eq">
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+<div class="bar"></div>
+</div>
+
+<div class="controls">
+
+<button class="btn nav-btn" onclick="next(-1)">◀</button>
+
+<button id="play-btn" class="btn play-btn" onclick="toggle()">
+PLAY
+</button>
+
+<button class="btn nav-btn" onclick="next(1)">▶</button>
+
+</div>
+
+<div class="vol">
+<input type="range" id="volume" min="0" max="1" step="0.01" value="0.5">
+</div>
+
 </div>
 
 <audio id="audio-player" crossorigin="anonymous"></audio>
 
 <script>
-    const audio = document.getElementById('audio-player');
-    const playBtn = document.getElementById('play-btn');
-    const statusTxt = document.getElementById('track-status');
-    const grid = document.getElementById('radio-grid');
-    const vol = document.getElementById('volume');
 
-    let stations = [];
-    let curIdx = -1;
+const audio=document.getElementById('audio-player')
+const playBtn=document.getElementById('play-btn')
+const statusTxt=document.getElementById('track-status')
+const grid=document.getElementById('radio-grid')
+const vol=document.getElementById('volume')
+const eq=document.getElementById('eq')
 
-    audio.volume = 0.5;
+let stations=[]
+let curIdx=-1
 
-    fetch('stations.json?v=' + Date.now()) // Сброс кэша JSON
-        .then(res => res.json())
-        .then(data => {
-            stations = data;
-            render();
-        })
-        .catch(() => statusTxt.innerText = "ОШИБКА JSON");
+audio.volume=0.5
 
-    function render() {
-        grid.innerHTML = '';
-        stations.forEach((s, i) => {
-            const card = document.createElement('div');
-            card.className = 'card' + (i === curIdx ? ' active' : '');
-            
-            // ГАРАНТИРОВАННОЕ ИСПРАВЛЕНИЕ ПУТИ
-            let rawPath = s.logo_url; // берем из JSON
-            if (rawPath.startsWith('/')) rawPath = rawPath.substring(1);
-            
-            // Добавляем метку времени к картинке, чтобы убрать кэш
-            const finalPath = rawPath + '?v=' + Date.now();
+fetch('stations.json?v='+Date.now())
+.then(r=>r.json())
+.then(data=>{
+stations=data
+render()
+})
+.catch(()=>statusTxt.innerText="ОШИБКА JSON")
 
-            card.innerHTML = `
-                <div class="logo-wrap">
-                    <img src="${finalPath}" class="logo-img" 
-                         onerror="this.src='https://via.placeholder.com/150?text=IMG_ERROR'; console.error('Файл не найден:', '${rawPath}')">
-                </div>
-                <span class="name">${s.name}</span>
-            `;
-            card.onclick = () => play(i);
-            grid.appendChild(card);
-        });
-    }
+function render(){
 
-    function play(index) {
-        curIdx = index;
-        const s = stations[curIdx];
-        audio.pause();
-        audio.src = s.stream_url; // из JSON
-        audio.load();
-        audio.play().catch(() => statusTxt.innerText = "ОШИБКА ПОТОКА");
-        render(); 
-        updateUI();
-    }
+grid.innerHTML=''
 
-    function toggle() {
-        if (curIdx === -1) { play(0); return; }
-        audio.paused ? audio.play() : audio.pause();
-        updateUI();
-    }
+stations.forEach((s,i)=>{
 
-    function updateUI() {
-        if (curIdx > -1) {
-            statusTxt.innerText = "ИГРАЕТ: " + stations[curIdx].name.toUpperCase();
-            playBtn.innerText = audio.paused ? "ПУСК" : "СТОП";
-            playBtn.style.background = audio.paused ? "#ee8208" : "#d32f2f";
-        }
-    }
+let rawPath=s.logo_url
+if(rawPath.startsWith('/'))rawPath=rawPath.substring(1)
 
-    function next(step) {
-        let n = curIdx + step;
-        if (n >= stations.length) n = 0;
-        if (n < 0) n = stations.length - 1;
-        play(n);
-    }
+const finalPath=rawPath+'?v='+Date.now()
 
-    vol.oninput = (e) => audio.volume = e.target.value;
+const card=document.createElement('div')
+
+card.className='card'+(i===curIdx?' active':'')
+
+card.innerHTML=`
+
+<div class="logo-wrap">
+
+<img src="${finalPath}" class="logo-img"
+onerror="this.src='https://via.placeholder.com/150?text=IMG'">
+
+</div>
+
+<span class="name">${s.name}</span>
+`
+
+card.onclick=()=>play(i)
+
+grid.appendChild(card)
+
+})
+
+}
+
+function play(index){
+
+curIdx=index
+
+const s=stations[curIdx]
+
+audio.pause()
+
+audio.src=s.stream_url
+
+audio.load()
+
+audio.play()
+
+render()
+
+updateUI()
+
+}
+
+function toggle(){
+
+if(curIdx===-1){play(0);return}
+
+if(audio.paused){
+
+audio.play()
+
+}else{
+
+audio.pause()
+
+}
+
+updateUI()
+
+}
+
+function updateUI(){
+
+if(curIdx>-1){
+
+statusTxt.innerText="ИГРАЕТ: "+stations[curIdx].name.toUpperCase()
+
+}
+
+if(audio.paused){
+
+playBtn.innerText="PLAY"
+
+playBtn.classList.remove("stop")
+
+eq.classList.add("eq-off")
+
+}else{
+
+playBtn.innerText="STOP"
+
+playBtn.classList.add("stop")
+
+eq.classList.remove("eq-off")
+
+}
+
+}
+
+function next(step){
+
+let n=curIdx+step
+
+if(n>=stations.length)n=0
+if(n<0)n=stations.length-1
+
+play(n)
+
+}
+
+vol.oninput=(e)=>{
+
+audio.volume=e.target.value
+
+let val=e.target.value*100
+
+e.target.style.background=
+`linear-gradient(to right,#ee8208 ${val}%,#ddd ${val}%)`
+
+}
+
 </script>
+
 </body>
 </html>
