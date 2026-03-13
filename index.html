@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>100 РАДИО</title>
     <style>
-        body { margin: 0; font-family: Arial, sans-serif; background-color: #ebedf0; padding-bottom: 150px; }
+        body { margin: 0; font-family: Arial, sans-serif; background-color: #ebedf0; padding-bottom: 160px; }
         .header { background-color: #ee8208; color: white; padding: 15px; text-align: center; font-size: 24px; font-weight: bold; }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
             gap: 15px;
-            padding: 15px;
+            padding: 20px;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -24,55 +24,64 @@
             text-align: center;
             box-shadow: 0 1px 3px rgba(0,0,0,0.2);
             cursor: pointer;
-            transition: 0.2s;
             border: 2px solid transparent;
+            transition: transform 0.1s;
         }
 
-        .card:hover { border-color: #ee8208; }
+        .card:active { transform: scale(0.95); }
         .card.active { border-color: #ee8208; background: #fffaf5; }
 
-        .logo {
+        .logo-wrap {
             width: 100%;
             aspect-ratio: 1/1;
-            object-fit: contain;
-            background: #fff;
+            background: #f9f9f9;
             border-radius: 4px;
             margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
         }
 
-        .name { font-weight: bold; font-size: 13px; color: #333; display: block; margin-bottom: 4px; }
-        .meta { font-size: 11px; color: #888; }
+        .logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Сохраняет пропорции без искажений */
+        }
 
-        /* Панель плеера */
+        .name { font-weight: bold; font-size: 13px; color: #333; display: block; height: 32px; overflow: hidden; }
+        .genres { font-size: 11px; color: #888; margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+        /* Панель управления */
         .player-bar {
             position: fixed;
             bottom: 0; left: 0; right: 0;
             background: #fff;
             border-top: 4px solid #ee8208;
-            padding: 15px;
+            padding: 15px 10px;
             box-shadow: 0 -3px 10px rgba(0,0,0,0.2);
             z-index: 1000;
         }
 
-        .info { text-align: center; font-weight: bold; margin-bottom: 10px; color: #333; height: 1.2em; }
+        .now-playing { text-align: center; font-weight: bold; margin-bottom: 12px; color: #ee8208; font-size: 14px; text-transform: uppercase; }
 
         .controls {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 15px;
-            max-width: 900px;
+            gap: 10px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
         .btn {
-            background: #ee8208; color: white; border: none; padding: 12px 25px;
-            border-radius: 5px; font-weight: bold; cursor: pointer; min-width: 80px;
+            background: #ee8208; color: white; border: none; padding: 12px 20px;
+            border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 14px;
         }
 
-        .btn-nav { background: #555; padding: 10px 15px; }
+        .btn-nav { background: #555; }
 
-        .vol {
+        .vol-slider {
             flex-grow: 1;
             height: 40px;
             accent-color: #ee8208;
@@ -83,88 +92,97 @@
 <body>
 
 <div class="header">100 РАДИО</div>
-<div id="grid" class="grid"></div>
+<div id="radio-grid" class="grid"></div>
 
 <div class="player-bar">
-    <div class="info" id="status">ВЫБЕРИТЕ РАДИОСТАНЦИЮ</div>
+    <div class="now-playing" id="track-status">ВЫБЕРИТЕ СТАНЦИЮ</div>
     <div class="controls">
-        <button class="btn btn-nav" onclick="change(-1)">◀</button>
-        <button id="p-btn" class="btn" onclick="toggle()">ПУСК</button>
-        <button class="btn btn-nav" onclick="change(1)">▶</button>
-        <input type="range" id="vol" class="vol" min="0" max="1" step="0.01" value="0.5">
+        <button class="btn btn-nav" onclick="next(-1)">◀</button>
+        <button id="play-btn" class="btn" style="min-width: 100px;" onclick="toggle()">ПУСК</button>
+        <button class="btn btn-nav" onclick="next(1)">▶</button>
+        <input type="range" id="volume" class="vol-slider" min="0" max="1" step="0.01" value="0.5">
     </div>
 </div>
 
-<audio id="audio" crossorigin="anonymous"></audio>
+<audio id="audio-player" crossorigin="anonymous"></audio>
 
 <script>
-    const audio = document.getElementById('audio');
-    const pBtn = document.getElementById('p-btn');
-    const status = document.getElementById('status');
-    const grid = document.getElementById('grid');
-    const vol = document.getElementById('vol');
+    const audio = document.getElementById('audio-player');
+    const playBtn = document.getElementById('play-btn');
+    const statusTxt = document.getElementById('track-status');
+    const grid = document.getElementById('radio-grid');
+    const vol = document.getElementById('volume');
 
     let stations = [];
-    let cur = -1;
+    let curIdx = -1;
 
+    // Начальная громкость
     audio.volume = 0.5;
 
-    // Загрузка твоего JSON
+    // Загрузка данных
     fetch('stations.json')
-        .then(r => r.json())
+        .then(res => res.json())
         .then(data => {
             stations = data;
-            draw();
+            render();
         })
-        .catch(() => status.innerText = "ОШИБКА: stations.json не найден");
+        .catch(() => statusTxt.innerText = "ОШИБКА ЗАГРУЗКИ СПИСКА");
 
-    function draw() {
+    function render() {
         grid.innerHTML = '';
         stations.forEach((s, i) => {
             const card = document.createElement('div');
-            card.className = 'card' + (i === cur ? ' active' : '');
+            card.className = 'card' + (i === curIdx ? ' active' : '');
             
-            // Тут теперь СТРОГО твои ключи из файла: logo_url, name, genres, country
+            // Фикс пути: убираем начальный слеш, если он есть
+            let cleanLogoPath = s.logo_url;
+            if (cleanLogoPath.startsWith('/')) cleanLogoPath = cleanLogoPath.substring(1);
+
             card.innerHTML = `
-                <img src="${s.logo_url}" class="logo" onerror="this.src='https://via.placeholder.com/150?text=RADIO'">
+                <div class="logo-wrap">
+                    <img src="${cleanLogoPath}" class="logo-img" 
+                         onerror="this.src='https://via.placeholder.com/150?text=НЕТ+ФОТО'">
+                </div>
                 <span class="name">${s.name}</span>
-                <div class="meta">${s.genres} | ${s.country}</div>
+                <div class="genres">${s.genres}</div>
             `;
             card.onclick = () => play(i);
             grid.appendChild(card);
         });
     }
 
-    function play(i) {
-        cur = i;
-        const s = stations[i];
-        
+    function play(index) {
+        if (index < 0 || index >= stations.length) return;
+        curIdx = index;
+        const s = stations[curIdx];
+
         audio.pause();
-        audio.src = s.stream_url; // Твой ключ из JSON
+        audio.src = s.stream_url; // Поле из твоего JSON
         audio.load();
         
-        audio.play().catch(e => { status.innerText = "ОШИБКА ПОТОКА"; });
-        
-        draw(); // Обновить активную карточку
-        updateUI();
+        audio.play()
+            .then(() => updateUI())
+            .catch(() => statusTxt.innerText = "ОШИБКА ВОСПРОИЗВЕДЕНИЯ");
+
+        render(); 
     }
 
     function toggle() {
-        if (cur === -1) { play(0); return; }
+        if (curIdx === -1) { play(0); return; }
         audio.paused ? audio.play() : audio.pause();
         updateUI();
     }
 
     function updateUI() {
-        if (cur > -1) {
-            status.innerText = "СЕЙЧАС ИГРАЕТ: " + stations[cur].name.toUpperCase();
-            pBtn.innerText = audio.paused ? "ПУСК" : "СТОП";
-            pBtn.style.background = audio.paused ? "#ee8208" : "#d32f2f";
+        if (curIdx > -1) {
+            statusTxt.innerText = "ИГРАЕТ: " + stations[curIdx].name.toUpperCase();
+            playBtn.innerText = audio.paused ? "ПУСК" : "СТОП";
+            playBtn.style.background = audio.paused ? "#ee8208" : "#d32f2f";
         }
     }
 
-    function change(dir) {
-        let n = cur + dir;
+    function next(step) {
+        let n = curIdx + step;
         if (n >= stations.length) n = 0;
         if (n < 0) n = stations.length - 1;
         play(n);
