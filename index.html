@@ -3,241 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Radio Aggregator Pro - Dynamic JSON</title>
+    <title>Radio Player Classic</title>
     <style>
-        :root {
-            --bg-color: #1a1a1a;
-            --panel-color: #2c2c2c;
-            --accent-color: #e74c3c;
-            --lcd-color: #22b14c;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-        }
-
-        .radio-container {
-            background: var(--panel-color);
-            width: 90%;
-            max-width: 400px;
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 2px 5px rgba(255,255,255,0.1);
-            border: 1px solid #333;
-            text-align: center;
-        }
-
-        /* LCD Дисплей */
-        .lcd-screen {
-            background: #0d1a0d;
-            margin-bottom: 20px;
-            padding: 15px;
-            border-radius: 8px;
-            border: 4px solid #111;
-            box-shadow: inset 0 0 15px #000;
-            overflow: hidden;
-        }
-
-        .loading-display {
-            color: var(--lcd-color);
-            font-family: 'Courier New', monospace;
-            font-size: 2.8rem;
-            font-weight: bold;
-            text-shadow: 0 0 10px var(--lcd-color);
-            margin-bottom: 5px;
-        }
-
-        .marquee-container {
-            width: 100%;
-            overflow: hidden;
-            white-space: nowrap;
-            border-top: 1px solid rgba(34, 177, 76, 0.2);
-            padding-top: 5px;
-            height: 25px;
-        }
-
-        .marquee-text {
-            display: inline-block;
-            color: var(--lcd-color);
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            animation: marquee 12s linear infinite;
-            padding-left: 100%;
-        }
-
-        @keyframes marquee {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(-100%, 0); }
-        }
-
-        /* Селектор станций */
-        .station-selector {
-            width: 100%;
-            padding: 12px;
-            background: #111;
-            color: #22b14c;
-            border: 1px solid #444;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-size: 1rem;
-            outline: none;
-            cursor: pointer;
-        }
-
-        /* Кнопки и управление */
-        .retro-btn {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            border: none;
-            background: linear-gradient(145deg, #333, #1a1a1a);
-            box-shadow: 6px 6px 12px #111, -2px -2px 5px #444;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            margin-bottom: 20px;
-            outline: none;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .retro-btn.playing {
-            color: var(--accent-color);
-            box-shadow: inset 2px 2px 10px #000;
-        }
-
-        .volume-section { padding: 0 5px; }
+        body { font-family: sans-serif; background: #f0f0f0; padding: 20px; text-align: center; }
+        .player-box { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); display: inline-block; width: 320px; }
         
-        .volume-label {
-            color: #888;
-            display: block;
-            margin-bottom: 15px;
-            font-size: 0.7rem;
-            letter-spacing: 1px;
-        }
+        /* Кнопка */
+        #play-btn { width: 100%; padding: 15px; font-size: 18px; cursor: pointer; background: #007bff; color: white; border: none; border-radius: 5px; margin-bottom: 20px; }
+        #play-btn.playing { background: #dc3545; }
 
-        .volume-slider {
-            -webkit-appearance: none;
-            width: 100%;
-            height: 40px;
-            background: #111;
-            border-radius: 20px;
-            outline: none;
-        }
-
-        .volume-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 45px;
-            height: 45px;
-            background: var(--accent-color);
-            border-radius: 50%;
-            border: 4px solid #fff;
-            cursor: pointer;
-        }
+        /* Большая шкала громкости */
+        .vol-container { margin-top: 10px; }
+        #volume-control { width: 100%; height: 30px; cursor: pointer; }
+        
+        /* Список станций */
+        #station-select { width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 5px; }
+        
+        .info { margin-top: 10px; color: #666; font-size: 14px; }
     </style>
 </head>
 <body>
 
-<div class="radio-container">
-    <div class="lcd-screen">
-        <div id="load-percent" class="loading-display">000</div>
-        <div class="marquee-container">
-            <div id="station-info" class="marquee-text">INITIALIZING... LOAD STATIONS...</div>
-        </div>
-    </div>
-
-    <select id="station-list" class="station-selector">
-        <option value="">-- ВЫБЕРИТЕ СТАНЦИЮ --</option>
+<div class="player-box">
+    <h3>Радио Агрегатор</h3>
+    
+    <select id="station-select">
+        <option value="">Выберите станцию...</option>
     </select>
 
-    <button id="play-pause" class="retro-btn">START</button>
+    <button id="play-btn">ПУСК</button>
 
-    <div class="volume-section">
-        <span class="volume-label">SYSTEM VOLUME</span>
-        <input type="range" id="volume-control" class="volume-slider" min="0" max="1" step="0.01" value="0.5">
+    <div class="vol-container">
+        <label>Громкость</label><br>
+        <input type="range" id="volume-control" min="0" max="1" step="0.01" value="0.5">
     </div>
+
+    <div class="info" id="status-display">Готов к работе</div>
 </div>
 
-<audio id="main-audio" crossorigin="anonymous"></audio>
+<audio id="main-audio"></audio>
 
 <script>
     const audio = document.getElementById('main-audio');
-    const playBtn = document.getElementById('play-pause');
-    const volumeSlider = document.getElementById('volume-control');
-    const loadText = document.getElementById('load-percent');
-    const infoDisplay = document.getElementById('station-info');
-    const stationList = document.getElementById('station-list');
+    const playBtn = document.getElementById('play-btn');
+    const volInput = document.getElementById('volume-control');
+    const select = document.getElementById('station-select');
+    const status = document.getElementById('status-display');
 
     let stations = [];
 
-    // Загрузка данных из JSON
-    async function initRadio() {
-        try {
-            const response = await fetch('stations.json');
-            stations = await response.json();
-            
-            stations.forEach((s, index) => {
-                const opt = document.createElement('option');
-                opt.value = index;
-                // В списке показываем только название
+    // Загружаем ваш JSON
+    fetch('stations.json')
+        .then(res => res.json())
+        .then(data => {
+            stations = data;
+            stations.forEach((s, i) => {
+                let opt = document.createElement('option');
+                opt.value = i;
                 opt.textContent = s.name;
-                stationList.appendChild(opt);
+                select.appendChild(opt);
             });
-            infoDisplay.innerText = "READY. SELECT YOUR WAVE.";
-        } catch (e) {
-            infoDisplay.innerText = "JSON LOAD ERROR";
-            console.error(e);
-        }
-    }
+        })
+        .catch(() => status.textContent = "Ошибка загрузки списка");
 
+    // Начальная громкость 50%
     audio.volume = 0.5;
 
     playBtn.addEventListener('click', () => {
-        const id = stationList.value;
-        if (id === "") return;
-
-        const s = stations[id];
+        const id = select.value;
+        if (id === "") return alert("Выберите радиостанцию");
 
         if (audio.paused) {
-            audio.src = s.url;
+            audio.src = stations[id].url;
             audio.play();
-            playBtn.innerText = "STOP";
+            playBtn.textContent = "СТОП";
             playBtn.classList.add('playing');
-            
-            // Формируем богатую строку: НАЗВАНИЕ | ЖАНР | СТРАНА
-            const genre = s.genre ? s.genre : "MUSIC";
-            const country = s.country ? s.country : "WORLD";
-            infoDisplay.innerText = `${s.name} | ${genre} | ${country}`;
+            status.textContent = "Играет: " + stations[id].name;
         } else {
             audio.pause();
             audio.src = "";
-            playBtn.innerText = "START";
+            playBtn.textContent = "ПУСК";
             playBtn.classList.remove('playing');
-            infoDisplay.innerText = "STATION PAUSED";
-            loadText.innerText = "000";
+            status.textContent = "Пауза";
         }
     });
 
-    volumeSlider.addEventListener('input', (e) => {
+    volInput.addEventListener('input', (e) => {
         audio.volume = e.target.value;
     });
-
-    // Анимация буферизации
-    audio.addEventListener('progress', () => {
-        if (audio.buffered.length > 0 && !audio.paused) {
-            let loaded = audio.buffered.end(audio.buffered.length - 1);
-            let val = Math.round((loaded % 10) * 10); 
-            loadText.innerText = val.toString().padStart(3, '0');
-        }
-    });
-
-    initRadio();
 </script>
 
 </body>
