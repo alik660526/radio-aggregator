@@ -1,17 +1,21 @@
 <!DOCTYPE html>
+
 <html lang="ru">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>100 РАДИО</title>
 
 <style>
 
 body{
 margin:0;
-font-family:Arial, sans-serif;
+font-family:Arial;
 background:#ebedf0;
-padding-bottom:170px;
+padding-bottom:160px;
 }
 
 .header{
@@ -89,105 +93,64 @@ z-index:1000;
 .now-playing{
 text-align:center;
 font-weight:bold;
-margin-bottom:6px;
 color:#ee8208;
-font-size:14px;
+margin-bottom:10px;
 }
 
 .controls{
 display:flex;
 align-items:center;
 justify-content:center;
-gap:12px;
-max-width:800px;
-margin:auto;
+gap:10px;
 }
 
 .btn{
 border:none;
 cursor:pointer;
 font-weight:bold;
+border-radius:8px;
 }
 
-.nav-btn{
+.nav{
 background:#555;
 color:white;
-padding:12px 14px;
-border-radius:6px;
-font-size:16px;
+padding:12px 16px;
 }
 
-.play-btn{
+.play{
 background:#ee8208;
 color:white;
+padding:14px 32px;
 font-size:16px;
-padding:14px 28px;
-border-radius:10px;
 }
 
-.play-btn.stop{
+.stop{
 background:#d32f2f;
 }
 
-.vol{
-width:100%;
-max-width:500px;
-margin:8px auto 0;
-display:block;
+.volume{
+margin-top:10px;
 }
 
-.vol input{
+.volume input{
 width:100%;
-height:10px;
+height:12px;
 appearance:none;
 border-radius:10px;
 background:linear-gradient(to right,#ee8208 50%,#ddd 50%);
-outline:none;
-transition:background 0.2s;
 }
 
-.vol input::-webkit-slider-thumb{
+.volume input::-webkit-slider-thumb{
 appearance:none;
 width:22px;
 height:22px;
 border-radius:50%;
 background:#ee8208;
 cursor:pointer;
-box-shadow:0 0 6px rgba(0,0,0,0.4);
-}
-
-.equalizer{
-display:flex;
-justify-content:center;
-gap:3px;
-height:14px;
-margin-top:4px;
-}
-
-.bar{
-width:3px;
-background:#ee8208;
-height:4px;
-animation: eq 0.8s infinite ease-in-out;
-}
-
-.bar:nth-child(2){animation-delay:.1s}
-.bar:nth-child(3){animation-delay:.2s}
-.bar:nth-child(4){animation-delay:.3s}
-.bar:nth-child(5){animation-delay:.4s}
-
-@keyframes eq{
-0%{height:4px}
-50%{height:14px}
-100%{height:4px}
-}
-
-.eq-off .bar{
-animation:none;
-height:4px;
 }
 
 </style>
+
 </head>
 
 <body>
@@ -198,59 +161,49 @@ height:4px;
 
 <div class="player-bar">
 
-<div class="now-playing" id="track-status">
+<div id="track-status" class="now-playing">
 ВЫБЕРИТЕ СТАНЦИЮ
-</div>
-
-<div class="equalizer eq-off" id="eq">
-<div class="bar"></div>
-<div class="bar"></div>
-<div class="bar"></div>
-<div class="bar"></div>
-<div class="bar"></div>
 </div>
 
 <div class="controls">
 
-<button class="btn nav-btn" onclick="next(-1)">◀</button>
+<button class="btn nav" onclick="next(-1)">◀</button>
 
-<button id="play-btn" class="btn play-btn" onclick="toggle()">
+<button id="play-btn" class="btn play" onclick="toggle()">
 PLAY
 </button>
 
-<button class="btn nav-btn" onclick="next(1)">▶</button>
+<button class="btn nav" onclick="next(1)">▶</button>
 
 </div>
 
-<div class="vol">
-<input type="range" id="volume" min="0" max="1" step="0.01" value="0.5">
+<div class="volume">
+<input id="volume" type="range" min="0" max="1" step="0.01" value="0.5">
 </div>
 
 </div>
 
-<audio id="audio-player" crossorigin="anonymous"></audio>
+<audio id="audio-player" preload="none" crossorigin="anonymous"></audio>
 
 <script>
 
 const audio=document.getElementById('audio-player')
-const playBtn=document.getElementById('play-btn')
-const statusTxt=document.getElementById('track-status')
 const grid=document.getElementById('radio-grid')
+const status=document.getElementById('track-status')
+const playBtn=document.getElementById('play-btn')
 const vol=document.getElementById('volume')
-const eq=document.getElementById('eq')
 
 let stations=[]
 let curIdx=-1
 
 audio.volume=0.5
 
-fetch('stations.json?v='+Date.now())
+fetch('stations.json')
 .then(r=>r.json())
 .then(data=>{
 stations=data
 render()
 })
-.catch(()=>statusTxt.innerText="ОШИБКА JSON")
 
 function render(){
 
@@ -258,24 +211,14 @@ grid.innerHTML=''
 
 stations.forEach((s,i)=>{
 
-let rawPath=s.logo_url
-if(rawPath.startsWith('/'))rawPath=rawPath.substring(1)
-
-const finalPath=rawPath+'?v='+Date.now()
-
 const card=document.createElement('div')
 
 card.className='card'+(i===curIdx?' active':'')
 
 card.innerHTML=`
-
 <div class="logo-wrap">
-
-<img src="${finalPath}" class="logo-img"
-onerror="this.src='https://via.placeholder.com/150?text=IMG'">
-
+<img loading="lazy" src="${s.logo_url}" class="logo-img">
 </div>
-
 <span class="name">${s.name}</span>
 `
 
@@ -287,15 +230,15 @@ grid.appendChild(card)
 
 }
 
-function play(index){
+function play(i){
 
-curIdx=index
+curIdx=i
 
-const s=stations[curIdx]
+let s=stations[i]
 
 audio.pause()
 
-audio.src=s.stream_url
+audio.src=s.stream_url + "?t=" + Date.now()
 
 audio.load()
 
@@ -309,7 +252,7 @@ updateUI()
 
 function toggle(){
 
-if(curIdx===-1){play(0);return}
+if(curIdx==-1){play(0);return}
 
 if(audio.paused){
 
@@ -329,25 +272,19 @@ function updateUI(){
 
 if(curIdx>-1){
 
-statusTxt.innerText="ИГРАЕТ: "+stations[curIdx].name.toUpperCase()
+status.innerText="ИГРАЕТ: "+stations[curIdx].name.toUpperCase()
 
 }
 
 if(audio.paused){
 
 playBtn.innerText="PLAY"
-
 playBtn.classList.remove("stop")
-
-eq.classList.add("eq-off")
 
 }else{
 
 playBtn.innerText="STOP"
-
 playBtn.classList.add("stop")
-
-eq.classList.remove("eq-off")
 
 }
 
@@ -364,16 +301,37 @@ play(n)
 
 }
 
-vol.oninput=(e)=>{
+vol.oninput=e=>{
 
 audio.volume=e.target.value
 
-let val=e.target.value*100
+let v=e.target.value*100
 
 e.target.style.background=
-`linear-gradient(to right,#ee8208 ${val}%,#ddd ${val}%)`
+`linear-gradient(to right,#ee8208 ${v}%,#ddd ${v}%)`
 
 }
+
+function reconnect(){
+
+if(curIdx>-1){
+
+console.log("Переподключение потока")
+
+let s=stations[curIdx]
+
+audio.src=s.stream_url + "?r=" + Date.now()
+
+audio.play()
+
+}
+
+}
+
+audio.onerror=reconnect
+audio.onstalled=reconnect
+audio.onended=reconnect
+audio.onabort=reconnect
 
 </script>
 
