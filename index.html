@@ -5,88 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>100 РАДИО</title>
     <style>
-        body { margin: 0; font-family: Arial, sans-serif; background-color: #ebedf0; padding-bottom: 160px; }
+        body { margin: 0; font-family: Arial, sans-serif; background-color: #ebedf0; padding-bottom: 150px; }
         .header { background-color: #ee8208; color: white; padding: 15px; text-align: center; font-size: 24px; font-weight: bold; }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 15px;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .card {
-            background: white;
-            border-radius: 8px;
-            padding: 10px;
-            text-align: center;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: transform 0.1s;
-        }
-
-        .card:active { transform: scale(0.95); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; padding: 20px; max-width: 1200px; margin: 0 auto; }
+        .card { background: white; border-radius: 8px; padding: 10px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.2); cursor: pointer; border: 2px solid transparent; }
         .card.active { border-color: #ee8208; background: #fffaf5; }
-
-        .logo-wrap {
-            width: 100%;
-            aspect-ratio: 1/1;
-            background: #f9f9f9;
-            border-radius: 4px;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .logo-img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* Сохраняет пропорции без искажений */
-        }
-
+        .logo-wrap { width: 100%; aspect-ratio: 1/1; background: #eee; border-radius: 4px; margin-bottom: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .logo-img { width: 100%; height: 100%; object-fit: contain; }
         .name { font-weight: bold; font-size: 13px; color: #333; display: block; height: 32px; overflow: hidden; }
-        .genres { font-size: 11px; color: #888; margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-        /* Панель управления */
-        .player-bar {
-            position: fixed;
-            bottom: 0; left: 0; right: 0;
-            background: #fff;
-            border-top: 4px solid #ee8208;
-            padding: 15px 10px;
-            box-shadow: 0 -3px 10px rgba(0,0,0,0.2);
-            z-index: 1000;
-        }
-
-        .now-playing { text-align: center; font-weight: bold; margin-bottom: 12px; color: #ee8208; font-size: 14px; text-transform: uppercase; }
-
-        .controls {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .btn {
-            background: #ee8208; color: white; border: none; padding: 12px 20px;
-            border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 14px;
-        }
-
+        .player-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #fff; border-top: 4px solid #ee8208; padding: 15px 10px; box-shadow: 0 -3px 10px rgba(0,0,0,0.2); z-index: 1000; }
+        .now-playing { text-align: center; font-weight: bold; margin-bottom: 10px; color: #ee8208; font-size: 14px; }
+        .controls { display: flex; align-items: center; justify-content: center; gap: 10px; max-width: 800px; margin: 0 auto; }
+        .btn { background: #ee8208; color: white; border: none; padding: 12px 20px; border-radius: 6px; font-weight: bold; cursor: pointer; }
         .btn-nav { background: #555; }
-
-        .vol-slider {
-            flex-grow: 1;
-            height: 40px;
-            accent-color: #ee8208;
-            cursor: pointer;
-        }
+        .vol-slider { flex-grow: 1; height: 40px; accent-color: #ee8208; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -98,7 +30,7 @@
     <div class="now-playing" id="track-status">ВЫБЕРИТЕ СТАНЦИЮ</div>
     <div class="controls">
         <button class="btn btn-nav" onclick="next(-1)">◀</button>
-        <button id="play-btn" class="btn" style="min-width: 100px;" onclick="toggle()">ПУСК</button>
+        <button id="play-btn" class="btn" onclick="toggle()">ПУСК</button>
         <button class="btn btn-nav" onclick="next(1)">▶</button>
         <input type="range" id="volume" class="vol-slider" min="0" max="1" step="0.01" value="0.5">
     </div>
@@ -116,17 +48,15 @@
     let stations = [];
     let curIdx = -1;
 
-    // Начальная громкость
     audio.volume = 0.5;
 
-    // Загрузка данных
-    fetch('stations.json')
+    fetch('stations.json?v=' + Date.now()) // Сброс кэша JSON
         .then(res => res.json())
         .then(data => {
             stations = data;
             render();
         })
-        .catch(() => statusTxt.innerText = "ОШИБКА ЗАГРУЗКИ СПИСКА");
+        .catch(() => statusTxt.innerText = "ОШИБКА JSON");
 
     function render() {
         grid.innerHTML = '';
@@ -134,17 +64,19 @@
             const card = document.createElement('div');
             card.className = 'card' + (i === curIdx ? ' active' : '');
             
-            // Фикс пути: убираем начальный слеш, если он есть
-            let cleanLogoPath = s.logo_url;
-            if (cleanLogoPath.startsWith('/')) cleanLogoPath = cleanLogoPath.substring(1);
+            // ГАРАНТИРОВАННОЕ ИСПРАВЛЕНИЕ ПУТИ
+            let rawPath = s.logo_url; // берем из JSON
+            if (rawPath.startsWith('/')) rawPath = rawPath.substring(1);
+            
+            // Добавляем метку времени к картинке, чтобы убрать кэш
+            const finalPath = rawPath + '?v=' + Date.now();
 
             card.innerHTML = `
                 <div class="logo-wrap">
-                    <img src="${cleanLogoPath}" class="logo-img" 
-                         onerror="this.src='https://via.placeholder.com/150?text=НЕТ+ФОТО'">
+                    <img src="${finalPath}" class="logo-img" 
+                         onerror="this.src='https://via.placeholder.com/150?text=IMG_ERROR'; console.error('Файл не найден:', '${rawPath}')">
                 </div>
                 <span class="name">${s.name}</span>
-                <div class="genres">${s.genres}</div>
             `;
             card.onclick = () => play(i);
             grid.appendChild(card);
@@ -152,19 +84,14 @@
     }
 
     function play(index) {
-        if (index < 0 || index >= stations.length) return;
         curIdx = index;
         const s = stations[curIdx];
-
         audio.pause();
-        audio.src = s.stream_url; // Поле из твоего JSON
+        audio.src = s.stream_url; // из JSON
         audio.load();
-        
-        audio.play()
-            .then(() => updateUI())
-            .catch(() => statusTxt.innerText = "ОШИБКА ВОСПРОИЗВЕДЕНИЯ");
-
+        audio.play().catch(() => statusTxt.innerText = "ОШИБКА ПОТОКА");
         render(); 
+        updateUI();
     }
 
     function toggle() {
@@ -189,9 +116,6 @@
     }
 
     vol.oninput = (e) => audio.volume = e.target.value;
-    audio.onplay = updateUI;
-    audio.onpause = updateUI;
 </script>
-
 </body>
 </html>
