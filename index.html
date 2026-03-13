@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наше Радио в ОК</title>
+    <style>
+        /* Стили в стиле Одноклассников */
+        body {
+            background-color: #F2F2F2;
+            font-family: -apple-system, system-ui, "Helvetica Neue", Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #EE8208; /* Фирменный оранжевый ОК */
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        .radio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .station-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-bottom: 2px solid transparent;
+        }
+
+        .station-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            border-bottom: 2px solid #EE8208;
+        }
+
+        .station-card img {
+            width: 100%;
+            height: auto;
+            max-width: 100px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .station-name {
+            font-weight: bold;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .station-genre {
+            font-size: 12px;
+            color: #888;
+        }
+
+        /* Плеер внизу страницы */
+        .player-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            padding: 15px;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            z-index: 100;
+        }
+
+        audio {
+            height: 35px;
+        }
+
+        #current-station-info {
+            font-weight: bold;
+            color: #EE8208;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Радиостанции нашей группы</h1>
+    <div class="radio-grid" id="radio-grid">
+        </div>
+</div>
+
+<div class="player-bar">
+    <div id="current-station-info">Выберите радиостанцию</div>
+    <audio id="audio-player" controls>
+        <source src="" type="audio/mpeg">
+        Ваш браузер не поддерживает аудио.
+    </audio>
+</div>
+
+<script>
+    const radioGrid = document.getElementById('radio-grid');
+    const audioPlayer = document.getElementById('audio-player');
+    const stationInfo = document.getElementById('current-station-info');
+
+    // Загрузка данных из stations.json
+    fetch('stations.json')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(station => {
+                const card = document.createElement('div');
+                card.className = 'station-card';
+                card.innerHTML = `
+                    <img src="${station.logo_url}" alt="${station.name}">
+                    <span class="station-name">${station.name}</span>
+                    <span class="station-genre">${station.genres}</span>
+                `;
+                
+                card.onclick = () => {
+                    audioPlayer.src = station.stream_url;
+                    audioPlayer.play();
+                    stationInfo.textContent = "Сейчас играет: " + station.name;
+                };
+                
+                radioGrid.appendChild(card);
+            });
+        })
+        .catch(err => console.error('Ошибка загрузки базы:', err));
+</script>
+
+</body>
+</html>

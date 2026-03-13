@@ -1,0 +1,884 @@
+[
+    {
+        "id": "001",
+        "name": "Авторадио",
+        "slug": "001_avtoradio",
+        "country": "Россия",
+        "genres": "Поп",
+        "stream_url": "https://pub0101.101.ru:8443/stream/air/mp3/256/100",
+        "logo_url": "logos/001_avtoradio.webp"
+    },
+    {
+        "id": "002",
+        "name": "Авторадио Мурзилки",
+        "slug": "002_avtoradio_murzilki",
+        "country": "Россия",
+        "genres": "Поп, Юмор",
+        "stream_url": "https://pub0302.101.ru:8000/stream/pro/aac/64/3",
+        "logo_url": "logos/002_avtoradio_murzilki.webp"
+    },
+    {
+        "id": "003",
+        "name": "Бизнес ФМ",
+        "slug": "003_biznes_fm",
+        "country": "Россия",
+        "genres": "Разговорное, Новости",
+        "stream_url": "https://bfm.hostingradio.ru:8004/fm",
+        "logo_url": "logos/003_biznes_fm.webp"
+    },
+    {
+        "id": "004",
+        "name": "БИМ-радио Казань",
+        "slug": "004_bim_radio_kazan",
+        "country": "Россия",
+        "genres": "Поп",
+        "stream_url": "https://av.bimradio.ru/bim_mp3_128k",
+        "logo_url": "logos/004_bim_radio_kazan.webp"
+    },
+    {
+        "id": "005",
+        "name": "Болгар Радиосы",
+        "slug": "005_bolgar_radiosy",
+        "country": "Россия",
+        "genres": "фолк ",
+        "stream_url": "https://live.bolgarradio.com/b_aac_hifi_8558049.ts",
+        "logo_url": "logos/005_bolgar_radiosy.webp"
+    },
+    {
+        "id": "006",
+        "name": "Вести FM",
+        "slug": "006_vesti_fm",
+        "country": "Россия",
+        "genres": "Разговорное, Новости",
+        "stream_url": "https://icecast-vgtrk.cdnvideo.ru/vestifm_mp3_192kbps",
+        "logo_url": "logos/006_vesti_fm.webp"
+    },
+    {
+        "id": "007",
+        "name": "Детское радио",
+        "slug": "007_detskoe_radio",
+        "country": "Россия",
+        "genres": "Детское ",
+        "stream_url": "https://pub0301.101.ru:8000/stream/air/aac/64/199",
+        "logo_url": "logos/007_detskoe_radio.webp"
+    },
+    {
+        "id": "008",
+        "name": "Дискотека СССР",
+        "slug": "008_diskoteka_sssr",
+        "country": "Россия",
+        "genres": "Поп",
+        "stream_url": "https://pub0101.101.ru/stream/pro/aac/64/144",
+        "logo_url": "logos/008_diskoteka_sssr.webp"
+    },
+    {
+        "id": "009",
+        "name": "Дорожное радио",
+        "slug": "009_dorozhnoe_radio",
+        "country": "Россия",
+        "genres": "Шансон, Русское Радио, Поп",
+        "stream_url": "https://dorognoe.hostingradio.ru/dorognoe",
+        "logo_url": "logos/009_dorozhnoe_radio.webp"
+    },
+    {
+        "id": "010",
+        "name": "Европа Плюс",
+        "slug": "010_evropa_pljus",
+        "country": "Россия",
+        "genres": "Поп, Танцевальное",
+        "stream_url": "https://ep256.hostingradio.ru:8052/europaplus256.mp3",
+        "logo_url": "logos/010_evropa_pljus.webp"
+    },
+    {
+        "id": "011",
+        "name": "Золотой Граммофон",
+        "slug": "011_zolotoj_grammofon",
+        "country": "Россия",
+        "genres": "Поп",
+        "stream_url": "https://rr-zolotoigrammofon.hostingradio.ru/zolotoigrammofon96.aacp",
+        "logo_url": "logos/011_zolotoj_grammofon.webp"
+    },
+    {
+        "id": "012",
+        "name": "Комсомольская Правда",
+        "slug": "012_komsomolskaja_pravda",
+        "country": "Россия",
+        "genres": "Разговорное, Новости",
+        "stream_url": "https://kpradio.hostingradio.ru:8000/russia.radiokp128.mp3",
+        "logo_url": "logos/012_komsomolskaja_pravda.webp"
+    },
+    {
+        "id": "013",
+        "name": "Маруся ФМ",
+        "slug": "013_marusja_fm",
+        "country": "Россия",
+        "genres": "Танцевальная и электронная",
+        "stream_url": "https://msk6.radio-holding.ru/marusya_default",
+        "logo_url": "logos/013_marusja_fm.webp"
+    },
+    {
+        "id": "014",
+        "name": "Метарадио",
+        "slug": "014_metaradio",
+        "country": "Россия",
+        "genres": "Танцевальная и электронная",
+        "stream_url": "https://s2.metaradio.ru/mradio.192",
+        "logo_url": "logos/014_metaradio.webp"
+    },
+    {
+        "id": "015",
+        "name": "Нафталин FM",
+        "slug": "015_naftalin_fm",
+        "country": "Россия",
+        "genres": "Ретро, Поп",
+        "stream_url": "https://radiorecord.hostingradio.ru/naft96.aacp",
+        "logo_url": "logos/015_naftalin_fm.webp"
+    },
+    {
+        "id": "016",
+        "name": "Наше Радио",
+        "slug": "016_nashe_radio",
+        "country": "Россия",
+        "genres": "Рок, Метал",
+        "stream_url": "https://nashe1.hostingradio.ru/nashe-256",
+        "logo_url": "logos/016_nashe_radio.webp"
+    },
+    {
+        "id": "017",
+        "name": "Новое Радио",
+        "slug": "017_novoe_radio",
+        "country": "Россия",
+        "genres": "Поп",
+        "stream_url": "https://icecast-newradio.cdnvideo.ru/newradio3",
+        "logo_url": "logos/017_novoe_radio.webp"
+    },
+    {
+        "id": "018",
+        "name": "Радио 10",
+        "slug": "018_radio_10",
+        "country": "Россия",
+        "genres": "Релакс",
+        "stream_url": "https://ic.radio10.live/stream.mp3",
+        "logo_url": "logos/018_radio_10.webp"
+    },
+    {
+        "id": "019",
+        "name": "Радио 161 FM",
+        "slug": "019_radio_161_fm",
+        "country": "Россия",
+        "genres": "Клубное, Метарадио, Клубное",
+        "stream_url": "https://stream.161.fm:8443/192?46eccf64",
+        "logo_url": "logos/019_radio_161_fm.webp"
+    },
+    {
+        "id": "020",
+        "name": "Радио 50F.RU",
+        "slug": "020_radio_50f_ru",
+        "country": "Россия",
+        "genres": "Танцевальное, Электронное, Клубное",
+        "stream_url": "https://myradio24.org/paradise",
+        "logo_url": "logos/020_radio_50f_ru.webp"
+    },
+    {
+        "id": "021",
+        "name": "Радио 7 на семи холмах",
+        "slug": "021_radio_7_na_semi_holmah",
+        "country": "Россия",
+        "genres": "Поп, Ретро",
+        "stream_url": "https://radio7.hostingradio.ru:8040/radio7256.mp3",
+        "logo_url": "logos/021_radio_7_na_semi_holmah.webp"
+    },
+    {
+        "id": "022",
+        "name": "Радио 7 Семей",
+        "slug": "022_radio_7_semej",
+        "country": "Россия",
+        "genres": "Поп",
+        "stream_url": "https://listen2.myradio24.com/8334",
+        "logo_url": "logos/022_radio_7_semej.webp"
+    },
+    {
+        "id": "023",
+        "name": "Радио Blues 101",
+        "slug": "023_radio_blues_101",
+        "country": "Россия",
+        "genres": "Блюз",
+        "stream_url": "https://pub0302.101.ru:8000/stream/pro/aac/64/76",
+        "logo_url": "logos/023_radio_blues_101.webp"
+    },
+    {
+        "id": "024",
+        "name": "Радио Cafe",
+        "slug": "024_radio_cafe",
+        "country": "Россия",
+        "genres": "Релакс",
+        "stream_url": "https://cafe.amgradio.ru/Cafe",
+        "logo_url": "logos/024_radio_cafe.webp"
+    },
+    {
+        "id": "025",
+        "name": "Радио DFM",
+        "slug": "025_radio_dfm",
+        "country": "Россия",
+        "genres": "Поп",
+        "stream_url": "https://dfm.hostingradio.ru/dfm96.aacp",
+        "logo_url": "logos/025_radio_dfm.webp"
+    },
+    {
+        "id": "026",
+        "name": "Радио DFM RAP",
+        "slug": "026_radio_dfm_rap",
+        "country": "Россия",
+        "genres": "Рэп",
+        "stream_url": "https://dfm-dfmrap.hostingradio.ru/dfmrap96.aacp",
+        "logo_url": "logos/026_radio_dfm_rap.webp"
+    },
+    {
+        "id": "027",
+        "name": "Радио ENERGY",
+        "slug": "027_radio_energy",
+        "country": "Россия",
+        "genres": "Танцевальное, Поп",
+        "stream_url": "https://pub0102.101.ru:8443/stream/air/mp3/256/99",
+        "logo_url": "logos/027_radio_energy.webp"
+    },
+    {
+        "id": "028",
+        "name": "Радио JAZZ",
+        "slug": "028_radio_jazz",
+        "country": "Россия",
+        "genres": "Джаз",
+        "stream_url": "https://nashe1.hostingradio.ru/jazz-256",
+        "logo_url": "logos/028_radio_jazz.webp"
+    },
+    {
+        "id": "029",
+        "name": "Радио KIDS HITS",
+        "slug": "029_radio_kids_hits",
+        "country": "Россия",
+        "genres": "Народное, Детское",
+        "stream_url": "https://listen4.myradio24.com/kidshits",
+        "logo_url": "logos/029_radio_kids_hits.webp"
+    },
+    {
+        "id": "030",
+        "name": "Радио MAXIMUM",
+        "slug": "030_radio_maximum",
+        "country": "Россия",
+        "genres": "Рок, Метал",
+        "stream_url": "https://maximum.hostingradio.ru/maximum128.mp3",
+        "logo_url": "logos/030_radio_maximum.webp"
+    },
+    {
+        "id": "031",
+        "name": "Радио Noise FM",
+        "slug": "031_radio_noise_fm",
+        "country": "Россия",
+        "genres": "Электронное, Для тренировок",
+        "stream_url": "https://play.sas-media.ru/play",
+        "logo_url": "logos/031_radio_noise_fm.webp"
+    },
+    {
+        "id": "032",
+        "name": "Радио Relax Jazz",
+        "slug": "032_radio_relax_jazz",
+        "country": "Россия",
+        "genres": "Джаз",
+        "stream_url": "https://pub0101.101.ru/stream/trust/mp3/128/264",
+        "logo_url": "logos/032_radio_relax_jazz.webp"
+    },
+    {
+        "id": "033",
+        "name": "Радио Smooth JAZZ",
+        "slug": "033_radio_smooth_jazz",
+        "country": "Россия",
+        "genres": "Джаз",
+        "stream_url": "https://jfm1.hostingradio.ru:14536/sjstream.mp3",
+        "logo_url": "logos/033_radio_smooth_jazz.webp"
+    },
+    {
+        "id": "034",
+        "name": "Радио ULTRA",
+        "slug": "034_radio_ultra",
+        "country": "Россия",
+        "genres": "Метал",
+        "stream_url": "https://nashe3.hostingradio.ru/ultra-128.mp3",
+        "logo_url": "logos/034_radio_ultra.webp"
+    },
+    {
+        "id": "035",
+        "name": "Радио UltraPlay",
+        "slug": "035_radio_ultraplay",
+        "country": "Россия",
+        "genres": "Метал",
+        "stream_url": "https://listen6.myradio24.com/1124",
+        "logo_url": "logos/035_radio_ultraplay.webp"
+    },
+    {
+        "id": "036",
+        "name": "Радио YO FM",
+        "slug": "036_radio_yo_fm",
+        "country": "Россия",
+        "genres": "Рэп",
+        "stream_url": "https://radiorecord.hostingradio.ru/yo96.aacp",
+        "logo_url": "logos/036_radio_yo_fm.webp"
+    },
+    {
+        "id": "037",
+        "name": "Радио Ангелов",
+        "slug": "037_radio_angelov",
+        "country": "Россия",
+        "genres": "Метал",
+        "stream_url": "https://listen6.myradio24.com/angels",
+        "logo_url": "logos/037_radio_angelov.webp"
+    },
+    {
+        "id": "038",
+        "name": "Радио Анекдоты",
+        "slug": "038_radio_anekdoty",
+        "country": "Россия",
+        "genres": "Юмор",
+        "stream_url": "https://pub0302.101.ru:8443/stream/trust/mp3/128/20",
+        "logo_url": "logos/038_radio_anekdoty.webp"
+    },
+    {
+        "id": "039",
+        "name": "Радио Атмосфера",
+        "slug": "039_radio_atmosfera",
+        "country": "Россия",
+        "genres": "Релакс",
+        "stream_url": "https://listen5.myradio24.com/atmo",
+        "logo_url": "logos/039_radio_atmosfera.webp"
+    },
+    {
+        "id": "040",
+        "name": "Радио Восток FM",
+        "slug": "040_radio_vostok_fm",
+        "country": "Россия",
+        "genres": "Народное",
+        "stream_url": "https://stream2.n340.com:8443/18_vostok_64_reg_1?type=.aac&UID=3CC5DFBB413537BA8A72212B4815A89F",
+        "logo_url": "logos/040_radio_vostok_fm.webp"
+    },
+    {
+        "id": "041",
+        "name": "Радио Высоцкий",
+        "slug": "041_radio_vysotskij",
+        "country": "Россия",
+        "genres": "Шансон",
+        "stream_url": "https://rr-vysockij.hostingradio.ru/vysockij96.aacp",
+        "logo_url": "logos/041_radio_vysotskij.webp"
+    },
+    {
+        "id": "042",
+        "name": "Радио Говорит Москва",
+        "slug": "042_radio_govorit_moskva",
+        "country": "Россия",
+        "genres": "Разговорное, Новости",
+        "stream_url": "https://media.govoritmoskva.ru/radio/rufm.mp3",
+        "logo_url": "logos/042_radio_govorit_moskva.webp"
+    },
+    {
+        "id": "043",
+        "name": "Радио дача",
+        "slug": "043_radio_dacha",
+        "country": "Россия",
+        "genres": "Поп, Ретро",
+        "stream_url": "https://listen15.vdfm.ru:8000/dacha?type=.mp3",
+        "logo_url": "logos/043_radio_dacha.webp"
+    },
+    {
+        "id": "044",
+        "name": "Радио Детский Хит",
+        "slug": "044_radio_detskij_hit",
+        "country": "Россия",
+        "genres": "Народное, Детское",
+        "stream_url": "https://deti.amgradio.ru/Deti",
+        "logo_url": "logos/044_radio_detskij_hit.webp"
+    },
+    {
+        "id": "045",
+        "name": "Радио Джем ФМ",
+        "slug": "045_radio_dzhem_fm",
+        "country": "Россия",
+        "genres": "Поп",
+        "stream_url": "https://online2.jamfm.ru/jam",
+        "logo_url": "logos/045_radio_dzhem_fm.webp"
+    },
+    {
+        "id": "046",
+        "name": "Радио Диполь ФМ",
+        "slug": "046_radio_dipol_fm",
+        "country": "Россия",
+        "genres": "Клубное",
+        "stream_url": "https://icecast-sibinformburo.cdnvideo.ru/dipolfm",
+        "logo_url": "logos/046_radio_dipol_fm.webp"
+    },
+    {
+        "id": "047",
+        "name": "Радио Дискач 90х",
+        "slug": "047_radio_diskach_90h",
+        "country": "Россия",
+        "genres": "Танцевальное",
+        "stream_url": "https://dfm-disc90.hostingradio.ru/disc9096.aacp",
+        "logo_url": "logos/047_radio_diskach_90h.webp"
+    },
+    {
+        "id": "048",
+        "name": "Радио ЖАРА ФМ",
+        "slug": "048_radio_zhara_fm",
+        "country": "Россия",
+        "genres": "Поп",
+        "stream_url": "https://live1.zharafm.ru/internet",
+        "logo_url": "logos/048_radio_zhara_fm.webp"
+    },
+    {
+        "id": "049",
+        "name": "Радио Звезда",
+        "slug": "049_radio_zvezda",
+        "country": "Россия",
+        "genres": "Разговорное, Новости",
+        "stream_url": "https://icecast-zvezda.mediacdn.ru/radio/zvezda/zvezda_128",
+        "logo_url": "logos/049_radio_zvezda.webp"
+    },
+    {
+        "id": "050",
+        "name": "Радио Искатель",
+        "slug": "050_radio_iskatel",
+        "country": "Россия",
+        "genres": "Рок, Метал",
+        "stream_url": "https://iskatel.hostingradio.ru:8015/iskatel-128.mp3",
+        "logo_url": "logos/050_radio_iskatel.webp"
+    },
+    {
+        "id": "051",
+        "name": "Радио Кабриолет",
+        "slug": "051_radio_kabriolet",
+        "country": "Россия",
+        "genres": "Шансон",
+        "stream_url": "https://listen2.myradio24.com/8144",
+        "logo_url": "logos/051_radio_kabriolet.webp"
+    },
+    {
+        "id": "052",
+        "name": "Радио Кавказ Хит",
+        "slug": "052_radio_kavkaz_hit",
+        "country": "Россия",
+        "genres": "Народное, Новости",
+        "stream_url": "https://kavkazhit.hostingradio.ru:8017/kavkazhit96.mp3",
+        "logo_url": "logos/052_radio_kavkaz_hit.webp"
+    },
+    {
+        "id": "053",
+        "name": "Радио Карнавал",
+        "slug": "053_radio_karnaval",
+        "country": "Россия",
+        "genres": "Поп",
+        "stream_url": "https://online.radiokarnaval.ru/karnaval",
+        "logo_url": "logos/053_radio_karnaval.webp"
+    },
+    {
+        "id": "054",
+        "name": "Радио Классик",
+        "slug": "054_radio_klassik",
+        "country": "Россия",
+        "genres": "Разговорное, Классическое",
+        "stream_url": "https://jfm1.hostingradio.ru:14536/rcstream.mp3",
+        "logo_url": "logos/054_radio_klassik.webp"
+    },
+    {
+        "id": "055",
+        "name": "Радио Книга",
+        "slug": "055_radio_kniga",
+        "country": "Россия",
+        "genres": "Разговорное, Классическое",
+        "stream_url": "https://bookradio.hostingradio.ru:8069/fm",
+        "logo_url": "logos/055_radio_kniga.webp"
+    },
+    {
+        "id": "056",
+        "name": "Радио Красноярск FM",
+        "slug": "056_radio_krasnojarsk_fm",
+        "country": "Россия",
+        "genres": "Танцевальное, Дискотека СССР, Танцевальное",
+        "stream_url": "https://streamer01.1028.fm:8443/arstream",
+        "logo_url": "logos/056_radio_krasnojarsk_fm.webp"
+    },
+    {
+        "id": "057",
+        "name": "Радио Культура",
+        "slug": "057_radio_kultura",
+        "country": "Россия",
+        "genres": "Разговорное, Классическое",
+        "stream_url": "https://icecast-vgtrk.cdnvideo.ru/kulturafm_mp3_192kbps",
+        "logo_url": "logos/057_radio_kultura.webp"
+    },
+    {
+        "id": "058",
+        "name": "Радио Маяк",
+        "slug": "058_radio_majak",
+        "country": "Россия",
+        "genres": "Новости, Разговорное",
+        "stream_url": "https://icecast-vgtrk.cdnvideo.ru/mayakfm_mp3_192kbps",
+        "logo_url": "logos/058_radio_majak.webp"
+    },
+    {
+        "id": "059",
+        "name": "Радио Милицейская Волна",
+        "slug": "059_radio_militsejskaja_volna",
+        "country": "Россия",
+        "genres": "Поп",
+        "stream_url": "https://radiomv.hostingradio.ru:80/radiomv128.mp3",
+        "logo_url": "logos/059_radio_militsejskaja_volna.webp"
+    },
+    {
+        "id": "060",
+        "name": "Радио Мир",
+        "slug": "060_radio_mir",
+        "country": "Россия",
+        "genres": "Поп, Новости",
+        "stream_url": "https://icecast-mirtv.cdnvideo.ru/radio_mir_256",
+        "logo_url": "logos/060_radio_mir.webp"
+    },
+    {
+        "id": "061",
+        "name": "Радио Монте-Карло",
+        "slug": "061_radio_monte_karlo",
+        "country": "Россия",
+        "genres": "Поп",
+        "stream_url": "https://montecarlo.hostingradio.ru/montecarlo96.aacp",
+        "logo_url": "logos/061_radio_monte_karlo.webp"
+    },
+    {
+        "id": "062",
+        "name": "Радио НЕСТАНДАРТ",
+        "slug": "062_radio_nestandart",
+        "country": "Россия",
+        "genres": "Поп",
+        "stream_url": "https://listen.radionestandart.ru:8200/nestandart-320.mp3",
+        "logo_url": "logos/062_radio_nestandart.webp"
+    },
+    {
+        "id": "063",
+        "name": "Радио Орфей",
+        "slug": "063_radio_orfej",
+        "country": "Россия",
+        "genres": "Разговорное, Классическое",
+        "stream_url": "https://orfeyfm.hostingradio.ru:8034/orfeyfm192.mp3",
+        "logo_url": "logos/063_radio_orfej.webp"
+    },
+    {
+        "id": "064",
+        "name": "Радио Пи ФМ",
+        "slug": "064_radio_pi_fm",
+        "country": "Россия",
+        "genres": "Поп",
+        "stream_url": "https://cdn.pifm.ru/mp3",
+        "logo_url": "logos/064_radio_pi_fm.webp"
+    },
+    {
+        "id": "065",
+        "name": "Радио Радонеж",
+        "slug": "065_radio_radonezh",
+        "country": "Россия",
+        "genres": "Народное",
+        "stream_url": "https://icecast-radonezh.cdnvideo.ru/rad128",
+        "logo_url": "logos/065_radio_radonezh.webp"
+    },
+    {
+        "id": "066",
+        "name": "Радио Рекорд",
+        "slug": "066_radio_rekord",
+        "country": "Россия",
+        "genres": "Танцевальное, Клубное",
+        "stream_url": "https://radiorecord.hostingradio.ru/rr_main96.aacp",
+        "logo_url": "logos/066_radio_rekord.webp"
+    },
+    {
+        "id": "067",
+        "name": "Радио Рекорд Микс",
+        "slug": "067_radio_rekord_miks",
+        "country": "Россия",
+        "genres": "Поп",
+        "stream_url": "https://radiorecord.hostingradio.ru/rus96.aacp",
+        "logo_url": "logos/067_radio_rekord_miks.webp"
+    },
+    {
+        "id": "068",
+        "name": "Радио Родных Дорог",
+        "slug": "068_radio_rodnyh_dorog",
+        "country": "Россия",
+        "genres": "Поп",
+        "stream_url": "https://stream1.radiord.ru:8000/live128.mp3",
+        "logo_url": "logos/068_radio_rodnyh_dorog.webp"
+    },
+    {
+        "id": "069",
+        "name": "Радио Роксана Уфа",
+        "slug": "069_radio_roksana_ufa",
+        "country": "Россия",
+        "genres": "Народное",
+        "stream_url": "https://listen1.myradio24.com/2761",
+        "logo_url": "logos/069_radio_roksana_ufa.webp"
+    },
+    {
+        "id": "070",
+        "name": "Радио Романтика",
+        "slug": "070_radio_romantika",
+        "country": "Россия",
+        "genres": "Релакс",
+        "stream_url": "https://pub0302.101.ru:8443/stream/air/aac/64/101",
+        "logo_url": "logos/070_radio_romantika.webp"
+    },
+    {
+        "id": "071",
+        "name": "Радио России",
+        "slug": "071_radio_rossii",
+        "country": "Россия",
+        "genres": "Новости, Разговорное",
+        "stream_url": "https://icecast-vgtrk.cdnvideo.ru/rrzonam_mp3_192kbps",
+        "logo_url": "logos/071_radio_rossii.webp"
+    },
+    {
+        "id": "072",
+        "name": "Радио Русская Волна",
+        "slug": "072_radio_russkaja_volna",
+        "country": "Россия",
+        "genres": "Поп",
+        "stream_url": "https://ru1.amgradio.ru/RuWave48",
+        "logo_url": "logos/072_radio_russkaja_volna.webp"
+    },
+    {
+        "id": "073",
+        "name": "Радио Русские Песни",
+        "slug": "073_radio_russkie_pesni",
+        "country": "Россия",
+        "genres": "Народное",
+        "stream_url": "https://mp3.amgradio.ru/rusongs128",
+        "logo_url": "logos/073_radio_russkie_pesni.webp"
+    },
+    {
+        "id": "074",
+        "name": "Радио Русский Рэп",
+        "slug": "074_radio_russkij_rep",
+        "country": "Россия",
+        "genres": "Рэп",
+        "stream_url": "https://pub0202.101.ru:8443/stream/pro/aac/64/43",
+        "logo_url": "logos/074_radio_russkij_rep.webp"
+    },
+    {
+        "id": "075",
+        "name": "Радио Русский Хит",
+        "slug": "075_radio_russkij_hit",
+        "country": "Россия",
+        "genres": "Поп",
+        "stream_url": "https://stream2.n340.com/19_ruhit_56_reg_1?type=.aac&UID=A7D101D3F39FF0EB44066B5B17DF6818",
+        "logo_url": "logos/075_radio_russkij_hit.webp"
+    },
+    {
+        "id": "076",
+        "name": "Радио Свой стиль",
+        "slug": "076_radio_svoj_stil",
+        "country": "Россия",
+        "genres": "Метал",
+        "stream_url": "https://svoystil.stream.laut.fm/svoystil?t302=2023-04-24_10-58-09&uuid=0ab0c373-d69a-4dfb-b0ad-bb3ef04802e4",
+        "logo_url": "logos/076_radio_svoj_stil.webp"
+    },
+    {
+        "id": "077",
+        "name": "Радио Сибирь",
+        "slug": "077_radio_sibir",
+        "country": "Россия",
+        "genres": "Поп",
+        "stream_url": "https://stream.radiosibir.ru:8093/om2?rn=521",
+        "logo_url": "logos/077_radio_sibir.webp"
+    },
+    {
+        "id": "078",
+        "name": "Радио Шоколад",
+        "slug": "078_radio_shokolad",
+        "country": "Россия",
+        "genres": "Релакс",
+        "stream_url": "https://choco.hostingradio.ru:10010/fm",
+        "logo_url": "logos/078_radio_shokolad.webp"
+    },
+    {
+        "id": "079",
+        "name": "Радио Эрмитаж",
+        "slug": "079_radio_ermitazh",
+        "country": "Россия",
+        "genres": "Джаз",
+        "stream_url": "https://hermitage.hostingradio.ru/hermitage128.mp3",
+        "logo_url": "logos/079_radio_ermitazh.webp"
+    },
+    {
+        "id": "080",
+        "name": "Радио Юлдаш",
+        "slug": "080_radio_juldash",
+        "country": "Россия",
+        "genres": "Народное, Болгар Радиосы, Народное",
+        "stream_url": "https://radio.mediacdn.ru/uldash.mp3",
+        "logo_url": "logos/080_radio_juldash.webp"
+    },
+    {
+        "id": "081",
+        "name": "Радио ЮмоRock",
+        "slug": "081_radio_jumorock",
+        "country": "Россия",
+        "genres": "Рок, Метал",
+        "stream_url": "https://pub0302.101.ru:8443/stream/trust/mp3/128/20",
+        "logo_url": "logos/081_radio_jumorock.webp"
+    },
+    {
+        "id": "082",
+        "name": "Ретро ФМ",
+        "slug": "082_retro_fm",
+        "country": "Россия",
+        "genres": "Ретро",
+        "stream_url": "https://retro.hostingradio.ru:8043/retro256.mp3",
+        "logo_url": "logos/082_retro_fm.webp"
+    },
+    {
+        "id": "083",
+        "name": "Серебряный Дождь",
+        "slug": "083_serebrjanyj_dozhd",
+        "country": "Россия",
+        "genres": "Поп, Новости",
+        "stream_url": "https://silverrain.hostingradio.ru/silver128.mp3",
+        "logo_url": "logos/083_serebrjanyj_dozhd.webp"
+    },
+    {
+        "id": "084",
+        "name": "Соловьёв FM Радио",
+        "slug": "084_solovjov_fm_radio",
+        "country": "Россия",
+        "genres": "Разговорное, Новости",
+        "stream_url": "https://solovievfm.hostingradio.ru/solovievfm128.aacp",
+        "logo_url": "logos/084_solovjov_fm_radio.webp"
+    },
+    {
+        "id": "085",
+        "name": "Соль FM",
+        "slug": "085_sol_fm",
+        "country": "Россия",
+        "genres": "Поп",
+        "stream_url": "https://radio.mediacdn.ru/fm_na_donu.mp3",
+        "logo_url": "logos/085_sol_fm.webp"
+    },
+    {
+        "id": "086",
+        "name": "Спокойное Радио",
+        "slug": "086_spokojnoe_radio",
+        "country": "Россия",
+        "genres": "Релакс",
+        "stream_url": "https://listen9.myradio24.com/6262",
+        "logo_url": "logos/086_spokojnoe_radio.webp"
+    },
+    {
+        "id": "087",
+        "name": "ХИТ ФМ",
+        "slug": "087_hit_fm",
+        "country": "Россия",
+        "genres": "Поп",
+        "stream_url": "https://hitfm.hostingradio.ru/hitfm128.mp3?48c22b78",
+        "logo_url": "logos/087_hit_fm.webp"
+    },
+    {
+        "id": "088",
+        "name": "Хорошее Радио",
+        "slug": "088_horoshee_radio",
+        "country": "Россия",
+        "genres": "Поп",
+        "stream_url": "https://hr.amgradio.ru/Horoshee",
+        "logo_url": "logos/088_horoshee_radio.webp"
+    },
+    {
+        "id": "089",
+        "name": "Юмор FM",
+        "slug": "089_jumor_fm",
+        "country": "Россия",
+        "genres": "Юмор",
+        "stream_url": "https://ic5.101.ru:8000/v5_1",
+        "logo_url": "logos/089_jumor_fm.webp"
+    },
+    {
+        "id": "090",
+        "name": "ЯпаРадио",
+        "slug": "090_japaradio",
+        "country": "Россия",
+        "genres": "Клубное",
+        "stream_url": "https://listen2.myradio24.com/dvachu",
+        "logo_url": "logos/090_japaradio.webp"
+    },
+    {
+        "id": "091",
+        "name": "Радио Baby FM",
+        "slug": "091_radio_baby_fm",
+        "country": "Россия",
+        "genres": "Народное, Детское",
+        "stream_url": "https://a5.radioheart.ru:8012/RH1916",
+        "logo_url": "logos/091_radio_baby_fm.webp"
+    },
+    {
+        "id": "092",
+        "name": "AlexFM Radiostation",
+        "slug": "092_alexfm_radiostation",
+        "country": "Россия",
+        "genres": "Метал",
+        "stream_url": "https://listen6.myradio24.com/2411",
+        "logo_url": "logos/092_alexfm_radiostation.webp"
+    },
+    {
+        "id": "093",
+        "name": "DFM Russian Dance",
+        "slug": "093_dfm_russian_dance",
+        "country": "Россия",
+        "genres": "Танцевальное",
+        "stream_url": "https://dfm-dfmrusdance.hostingradio.ru/dfmrusdance96.aacp",
+        "logo_url": "logos/093_dfm_russian_dance.webp"
+    },
+    {
+        "id": "094",
+        "name": "Like FM",
+        "slug": "094_like_fm",
+        "country": "Россия",
+        "genres": "Танцевальное",
+        "stream_url": "https://pub0202.101.ru:8443/stream/air/aac/64/219",
+        "logo_url": "logos/094_like_fm.webp"
+    },
+    {
+        "id": "095",
+        "name": "L-radio",
+        "slug": "095_l_radio",
+        "country": "Россия",
+        "genres": "Танцевальное",
+        "stream_url": "https://air.unmixed.ru/lradio256",
+        "logo_url": "logos/095_l_radio.webp"
+    },
+    {
+        "id": "096",
+        "name": "Relax FM",
+        "slug": "096_relax_fm",
+        "country": "Россия",
+        "genres": "Релакс, Маруся ФМ, Поп, Детское Радио, Разговорное, Детское",
+        "stream_url": "https://pub0301.101.ru:8000/stream/air/aac/64/200",
+        "logo_url": "logos/096_relax_fm.webp"
+    },
+    {
+        "id": "097",
+        "name": "REVOLUTION Radio",
+        "slug": "097_revolution_radio",
+        "country": "Россия",
+        "genres": "Электронное, Для тренировок",
+        "stream_url": "https://revolutionradio.ru:8443/live.mp3",
+        "logo_url": "logos/097_revolution_radio.webp"
+    },
+    {
+        "id": "098",
+        "name": "Rock FM",
+        "slug": "098_rock_fm",
+        "country": "Россия",
+        "genres": "Рок, Метал",
+        "stream_url": "https://nashe1.hostingradio.ru:80/rock-128.mp3",
+        "logo_url": "logos/098_rock_fm.webp"
+    }
+]
